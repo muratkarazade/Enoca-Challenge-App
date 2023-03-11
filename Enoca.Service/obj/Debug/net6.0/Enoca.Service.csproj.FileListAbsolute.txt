@@ -1,0 +1,17 @@
+C:\Users\levfi\OneDrive\Masaüstü\Backend\EnocaChallange\Enoca.Service\bin\Debug\net6.0\Enoca.Service.deps.json
+C:\Users\levfi\OneDrive\Masaüstü\Backend\EnocaChallange\Enoca.Service\bin\Debug\net6.0\Enoca.Service.dll
+C:\Users\levfi\OneDrive\Masaüstü\Backend\EnocaChallange\Enoca.Service\bin\Debug\net6.0\Enoca.Service.pdb
+C:\Users\levfi\OneDrive\Masaüstü\Backend\EnocaChallange\Enoca.Service\obj\Debug\net6.0\Enoca.Service.csproj.AssemblyReference.cache
+C:\Users\levfi\OneDrive\Masaüstü\Backend\EnocaChallange\Enoca.Service\obj\Debug\net6.0\Enoca.Service.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\levfi\OneDrive\Masaüstü\Backend\EnocaChallange\Enoca.Service\obj\Debug\net6.0\Enoca.Service.AssemblyInfoInputs.cache
+C:\Users\levfi\OneDrive\Masaüstü\Backend\EnocaChallange\Enoca.Service\obj\Debug\net6.0\Enoca.Service.AssemblyInfo.cs
+C:\Users\levfi\OneDrive\Masaüstü\Backend\EnocaChallange\Enoca.Service\obj\Debug\net6.0\Enoca.Service.csproj.CoreCompileInputs.cache
+C:\Users\levfi\OneDrive\Masaüstü\Backend\EnocaChallange\Enoca.Service\obj\Debug\net6.0\Enoca.Service.dll
+C:\Users\levfi\OneDrive\Masaüstü\Backend\EnocaChallange\Enoca.Service\obj\Debug\net6.0\refint\Enoca.Service.dll
+C:\Users\levfi\OneDrive\Masaüstü\Backend\EnocaChallange\Enoca.Service\obj\Debug\net6.0\Enoca.Service.pdb
+C:\Users\levfi\OneDrive\Masaüstü\Backend\EnocaChallange\Enoca.Service\obj\Debug\net6.0\ref\Enoca.Service.dll
+C:\Users\levfi\OneDrive\Masaüstü\Backend\EnocaChallange\Enoca.Service\bin\Debug\net6.0\Enoca.Core.dll
+C:\Users\levfi\OneDrive\Masaüstü\Backend\EnocaChallange\Enoca.Service\bin\Debug\net6.0\Enoca.Repository.dll
+C:\Users\levfi\OneDrive\Masaüstü\Backend\EnocaChallange\Enoca.Service\bin\Debug\net6.0\Enoca.Core.pdb
+C:\Users\levfi\OneDrive\Masaüstü\Backend\EnocaChallange\Enoca.Service\bin\Debug\net6.0\Enoca.Repository.pdb
+C:\Users\levfi\OneDrive\Masaüstü\Backend\EnocaChallange\Enoca.Service\obj\Debug\net6.0\Enoca.Service.csproj.CopyComplete

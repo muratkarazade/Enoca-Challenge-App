@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enoca.API", "Enoca.API\Enoca.API.csproj", "{170EDA81-DC43-415D-9EB6-CD09A1DE55BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enoca.Core", "Enoca.Core\Enoca.Core.csproj", "{B3143586-729F-4C63-A2B5-1BA282B3C533}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enoca.Service", "Enoca.Service\Enoca.Service.csproj", "{5958FA53-DD94-47A3-9AE3-2D6EF36D7508}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enoca.Repository", "Enoca.Repository\Enoca.Repository.csproj", "{68A75C99-6F2F-47A7-95B0-AF8EF6F6D74A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{170EDA81-DC43-415D-9EB6-CD09A1DE55BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{170EDA81-DC43-415D-9EB6-CD09A1DE55BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{170EDA81-DC43-415D-9EB6-CD09A1DE55BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{170EDA81-DC43-415D-9EB6-CD09A1DE55BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3143586-729F-4C63-A2B5-1BA282B3C533}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3143586-729F-4C63-A2B5-1BA282B3C533}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3143586-729F-4C63-A2B5-1BA282B3C533}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3143586-729F-4C63-A2B5-1BA282B3C533}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5958FA53-DD94-47A3-9AE3-2D6EF36D7508}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5958FA53-DD94-47A3-9AE3-2D6EF36D7508}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5958FA53-DD94-47A3-9AE3-2D6EF36D7508}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5958FA53-DD94-47A3-9AE3-2D6EF36D7508}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68A75C99-6F2F-47A7-95B0-AF8EF6F6D74A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68A75C99-6F2F-47A7-95B0-AF8EF6F6D74A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68A75C99-6F2F-47A7-95B0-AF8EF6F6D74A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68A75C99-6F2F-47A7-95B0-AF8EF6F6D74A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EFE66AFD-B2DC-48A2-9836-ACBD23FD1A1F}
+	EndGlobalSection
+EndGlobal
