@@ -28,6 +28,9 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
+              "C:\\Users\\levfi\\OneDrive\\Masaüstü\\Backend\\EnocaChallange\\Enoca.Core\\Enoca.Core.csproj": {
+                "projectPath": "C:\\Users\\levfi\\OneDrive\\Masaüstü\\Backend\\EnocaChallange\\Enoca.Core\\Enoca.Core.csproj"
+              },
               "C:\\Users\\levfi\\OneDrive\\Masaüstü\\Backend\\EnocaChallange\\Enoca.Repository\\Enoca.Repository.csproj": {
                 "projectPath": "C:\\Users\\levfi\\OneDrive\\Masaüstü\\Backend\\EnocaChallange\\Enoca.Repository\\Enoca.Repository.csproj"
               },

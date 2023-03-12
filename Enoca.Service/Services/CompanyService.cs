@@ -27,9 +27,6 @@ namespace Enoca.Service.Services
             _companyRepository = companyRepository;
         }
 
-        public void GetAll()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

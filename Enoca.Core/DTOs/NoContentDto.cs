@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Enoca.Core.DTOs
 {
-    public class CompanyStatusUpdateDto : BaseDto
+    public class NoContentDto
     {
-        public bool IsStatus { get; set; }
     }
 }

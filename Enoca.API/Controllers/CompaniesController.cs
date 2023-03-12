@@ -6,79 +6,149 @@ using Enoca.Repository;
 using Enoca.Service.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Enoca.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class CompaniesController : CustomBaseController
     {
-        private readonly ICompanyService _companySevice;
+        
         private readonly IMapper _mapper;
+        private readonly ICompanyService _companyService;
 
-        public CompaniesController(ICompanyService companySevice, IMapper mapper)
+        public CompaniesController(IMapper mapper, ICompanyService companyService)
         {
-            _companySevice = companySevice;
+            
             _mapper = mapper;
+            _companyService = companyService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAllAsync()
         {
-            var companies = await _companySevice.GetAllAsync();
+            var companies = await _companyService.GetAllAsync();
             return Ok(companies);
         }
-        [HttpGet("[action]/{id}")]
-        public async Task<IActionResult> GetById(int id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetByIdCompanyAsync(int id)
         {
-            var company = await _companySevice.GetByIdAsync(id);
+            var company = await _companyService.GetByIdAsync(id);
             return Ok(company);
         }
-        [HttpPost("[action]")]
-        public async Task<IActionResult> AddAsync([FromBody]Company company)
+        [HttpPost]
+        public async Task<IActionResult> AddAsync([FromBody] CreateCompanyDto createCompanyDto)
         {
-            // Burada, CompanyService sınıfından bir örnek alınarak _companyService değişkeni oluşturulabilir.
+            if (createCompanyDto == null)
+            {
+                return BadRequest("Company cannot be null");
+            }
 
-            //if (companyDto == null)
-            //{
-            //    return BadRequest("Company cannot be null");
-            //}
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            var mapperConfig = new MapperConfiguration(cfg => {
-                cfg.CreateMap<CompanyDto, Company>();
-                cfg.CreateMap<Company, CompanyDto>();
-            });
-            IMapper mapper = mapperConfig.CreateMapper(); // Burada, AutoMapper kütüphanesi ile bir IMapper örneği oluşturulur.
+            
 
-            //var company = await _companySevice.AddAsync(mapper.Map<Company>(companyDto));
-            //var companyDtoResult = mapper.Map<CompanyDto>(company);
-            //return CreateActionResult(CustomResponseDto<ProductDto>.Success(201, companyDtoResult));
+            TimeSpan startTime;
+            TimeSpan finishTime;
 
-            //var company = _mapper.Map<Company>(companyDto);
-            //await _companySevice.AddAsync(company);
+            if (!TimeSpan.TryParse(createCompanyDto.OrderStartTimeString, out startTime))
+            {
+                return BadRequest("Hatalı Format. ('hh:mm:ss')");
+            }
 
-            var company = _mapper.Map<Company>(CompanyDto);
-            await _companyRepository.AddAsync(company);
+            if (!TimeSpan.TryParse(createCompanyDto.OrderFinishTimeString, out finishTime))
+            {
+                return BadRequest("Hatalı Format. ('hh:mm:ss')");
+            }
 
-            return Ok();
+            var company = _mapper.Map<Company>(createCompanyDto);
+
+            company.OrderStartTime = startTime;
+            company.OrderFinishTime = finishTime;
+
+            await _companyService.AddAsync(company);
+
+            var companyDto = _mapper.Map<CompanyDto>(company);
+
+            return Ok(companyDto);
         }
-
-
 
         [HttpPut]
-        public async Task<IActionResult> Update(CompanyStatusUpdateDto companyDto)
+        public async Task<IActionResult> Update(CompanyDto companyDto)
         {
-            await _companySevice.UpdateAsync(_mapper.Map<Company>(companyDto)); 
+            await _companyService.UpdateAsync(_mapper.Map<Company>(companyDto)); 
             return Ok();
         }
-
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Remove(int id)
         {
-            var product = await _companySevice.GetByIdAsync(id);
-            await _companySevice.RemoveAsync(product);
+            var product = await _companyService.GetByIdAsync(id);
+            await _companyService.RemoveAsync(product);
             return Ok(true);
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateIsStatusAsync(int id, [FromBody] CompanyStatusUpdateDto companyStatusUpdateDto)
+        {
+            var company = await _companyService.GetByIdAsync(id);
+            if (company == null)
+            {
+                return NotFound();
+            }
+           
+            company.IsStatus = companyStatusUpdateDto.IsStatus;
+            await _companyService.UpdateAsync(company);
+            return Ok();
+
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetCompanyStatusAsync(int id, CompanyStatusUpdateDto companyStatusUpdateDto)
+        {
+            var company = await _companyService.GetByIdAsync(id);
+            if (company == null)
+            {
+                return NotFound();
+            }
+            bool result =  company.IsStatus;
+            return Ok(result);
+
+        }
+
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateOrderTimeAsync(int id, [FromBody] OrderTimeUpdateDto orderTimeUpdateDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var company = await _companyService.GetByIdAsync(id);
+            if (company == null)
+            {
+                return NotFound();
+            }
+            TimeSpan startTime;
+            TimeSpan finishTime;
+            if (!TimeSpan.TryParse(orderTimeUpdateDto.OrderStartTimeString, out startTime))
+            {
+                return BadRequest("Hatalı Format. ('hh:mm:ss')");
+            }
+            if (!TimeSpan.TryParse(orderTimeUpdateDto.OrderFinishTimeString, out finishTime))
+            {
+                return BadRequest("Hatalı Format. ('hh:mm:ss')");
+            }
+            company.OrderStartTime = startTime;
+            company.OrderFinishTime = finishTime;
+
+            await _companyService.UpdateAsync(company);
+            return Ok();
+
+        }
+
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Enoca.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,8 @@ namespace Enoca.Core.DTOs
 {
     public class OrderDto : BaseDto
     {
-        public string OrdererName { get; set; }
+        public string OrdererName { get; set; }         
+        public int CompanyId { get; set; }
         public int ProductId { get; set; }
     }
 }

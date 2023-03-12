@@ -8,7 +8,7 @@ namespace Enoca.Core.Models
 {
     public class Order : BaseEntity
     {
-        public string OrdererName { get; set; }
+        public string OrdererName { get; set; }        
         public int ProductId { get; set; }       
         public  Product Product { get; set; }
 

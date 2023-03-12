@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Enoca.Core.Services
 {
-    internal interface IProductService : IService<Product>
+    public interface IProductService : IService<Product>
     {
     }
 }

@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Enoca.Core\Enoca.Core.csproj" />
     <ProjectReference Include="..\Enoca.Repository\Enoca.Repository.csproj" />
     <ProjectReference Include="..\Enoca.Service\Enoca.Service.csproj" />
   </ItemGroup>

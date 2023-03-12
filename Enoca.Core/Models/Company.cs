@@ -10,8 +10,8 @@ namespace Enoca.Core.Models
     {
         public string Name { get; set; }
         public bool IsStatus { get; set; }
-        public TimeSpan OrderStartTime { get; set; } 
-        public TimeSpan OrderFinishTime { get; set; }        
+        public TimeSpan OrderStartTime { get; set; } = TimeSpan.FromHours(1);
+        public TimeSpan OrderFinishTime { get; set; } = TimeSpan.FromHours(1);
         public ICollection<Product> Products { get; set; }
         
     }

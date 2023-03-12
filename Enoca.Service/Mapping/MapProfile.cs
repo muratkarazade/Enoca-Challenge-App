@@ -22,6 +22,7 @@ namespace Enoca.Service.Mapping
             CreateMap<Product, ProductWithOrderDto>();
             CreateMap<CompanyStatusUpdateDto, CompanyDto>();
             CreateMap<OrderTimeUpdateDto, CompanyDto>();
+            CreateMap<CreateCompanyDto, Company>();
         }
 
     }
