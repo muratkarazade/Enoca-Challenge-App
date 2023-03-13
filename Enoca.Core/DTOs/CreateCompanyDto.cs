@@ -9,16 +9,18 @@ namespace Enoca.Core.DTOs
 {
     public class CreateCompanyDto : BaseDto
     {
+        
         public string Name { get; set; }
         public bool IsStatus { get; set; }
-        public string OrderStartTimeString { get; set; }
-        public string OrderFinishTimeString { get; set; }
+        public string? OrderStartTimeString { get; set; }
+        public string? OrderFinishTimeString { get; set; }
 
         [JsonIgnore]
         public TimeSpan OrderStartTime
         {
             get
             {
+                
                 return TimeSpan.Parse(OrderStartTimeString);
             }
             set

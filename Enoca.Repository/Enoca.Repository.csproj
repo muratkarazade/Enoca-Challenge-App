@@ -19,10 +19,6 @@
     <ProjectReference Include="..\Enoca.Core\Enoca.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="SqlScript\" />
-  </ItemGroup>
-
  
 
 </Project>

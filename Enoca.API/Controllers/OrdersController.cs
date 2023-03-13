@@ -22,32 +22,50 @@ namespace Enoca.API.Controllers
             _mapper = mapper;
             _orderService = orderService;
             _companyService = companyService;
-            _productService = productService;
+            _productService = productService;            
         }
+
+        /// <summary>
+        /// Belirtilen ID'ye sahip şirketin onay durumunu getirir.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
-        public async Task<bool> GetCompanyStatusAsync(int id)
+        public async Task<IActionResult> GetCompanyStatusAsync(int id)
         {
             var company = await _companyService.GetByIdAsync(id);
             if (company == null)
             {
-                return false;
+                return NotFound();
             }
             var status = company.IsStatus;
-            return status;
+            return Ok(status);
 
         }
 
+        /// <summary>
+        /// Belirtilen ID'ye sahip ürünü getirir.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProduct(int id)
         {
             var product = await _productService.GetByIdAsync(id);
+            if (product == null) { return NotFound(); }
             return Ok(product);
         }
 
+
+        /// <summary>
+        /// Sipariş oluşturma için gerekli HTTP POST metodu.
+        /// </summary>
+        /// <param name="orderDto"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> CreateOrderAsync([FromBody] OrderDto orderDto)
         {
-            //Ürün Kontrolü
+            //Ürün kontrolü yapar.
             var product = await _productService.GetByIdAsync(orderDto.ProductId);
            
             if (product == null)
@@ -55,33 +73,27 @@ namespace Enoca.API.Controllers
                 return BadRequest("Ürün Bulunamadı!");
             }
 
-
             var companyId = orderDto.CompanyId;
-            //Firma Kontrolü
+            //Firma kontrolü yapar.
             var company = await _companyService.GetByIdAsync(companyId);
             if (company == null)
                 return BadRequest("Firma Bulunamadı!");
-
-            //Firma Onay Kontrolü
+           
+            //Şipariş verilen şirketin onay olduğunun kontrolü.
             var companyStatus = await GetCompanyStatusAsync(companyId);
             if (!companyStatus)
                 return BadRequest("Firma Onaylı Değil");
 
-            //Firma Sipariş Saat Kontrolü
+            //Yapılan siparişin uygun saatler içerisinde oluduğunun kontrolü.
             var now = DateTime.Now.TimeOfDay;
             if (now < company.OrderStartTime || now > company.OrderFinishTime)
             {
                 return BadRequest("Firma Sipariş Alma Saatleri İçerisinde Değil!");
-            }
+            }          
 
-          
-
-            //****** {Sipariş sayısı stok miktarı kontrolü!}//
-
-            
+            //**  DEĞERLENDİRİLEBİLİR **** {Sipariş sayısı stok miktarı kontrolü!}//            
             var order = new Order
-            {
-                
+            {                
                 ProductId = orderDto.ProductId,
                 OrdererName = orderDto.OrdererName,
                 CreatedDate = DateTime.UtcNow
@@ -90,7 +102,7 @@ namespace Enoca.API.Controllers
             await _orderService.AddAsync(order);
             await _productService.UpdateAsync(product);
 
-            return Ok($"Siparişiniz Başırılı Bir Şekilde Oluşturuldu! \n  {company.Name} firmasından {product.Name} ürünü sipariş ettiniz.");
+            return Ok($"Siparişiniz Başırılı Bir Şekilde Oluşturuldu! \n{company.Name} firmasından {product.Name} ürünü sipariş ettiniz.");
         }
 
 

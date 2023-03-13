@@ -22,21 +22,38 @@ namespace Enoca.API.Controllers
         }
 
 
+        /// <summary>
+        /// Belirtilen ID'ye sahip ürünü getirir.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProduct(int id)
         {
+            if(id == 0) return BadRequest(); 
             var product = await _productService.GetByIdAsync(id);
+            if(product == null) return NotFound();
             return Ok(product);
         }
 
+        /// <summary>
+        /// Mevcut tüm ürünleri getirir.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetAllProductsAsync()
         {
             var products = await _productService.GetAllAsync();
+            if(products == null) return NoContent();
             return Ok(products);
         }
 
 
+        /// <summary>
+        /// Yeni bir ürün ekler.
+        /// </summary>
+        /// <param name="productDto"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> AddProductAsync([FromBody] ProductDto productDto)
         {
@@ -46,7 +63,7 @@ namespace Enoca.API.Controllers
             }
             var result = await _productService.AddAsync(_mapper.Map<Product>(productDto));
             productDto = _mapper.Map<ProductDto>(productDto);
-            return Ok(productDto);
+            return StatusCode(201,productDto);
         }
     }
 }
