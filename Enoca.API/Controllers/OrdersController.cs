@@ -26,20 +26,20 @@ namespace Enoca.API.Controllers
         }
 
         /// <summary>
-        /// Belirtilen ID'ye sahip şirketin onay durumunu getirir.
+        /// Belirtilen ID'deki şirketin onay durumu kontrol eder 
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>boolean türünde geri döüş yapar</returns>
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetCompanyStatusAsync(int id)
+        public async Task<bool> GetCompanyStatusAsync(int id)
         {
             var company = await _companyService.GetByIdAsync(id);
             if (company == null)
             {
-                return NotFound();
+                return false;
             }
             var status = company.IsStatus;
-            return Ok(status);
+            return status;
 
         }
 
@@ -104,12 +104,6 @@ namespace Enoca.API.Controllers
 
             return Ok($"Siparişiniz Başırılı Bir Şekilde Oluşturuldu! \n{company.Name} firmasından {product.Name} ürünü sipariş ettiniz.");
         }
-
-
-
-
     }
-
-
 }
 
